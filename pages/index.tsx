@@ -5,23 +5,23 @@ type props = {
 	data: any;
 };
 
+type anime = {
+	mal_id: number;
+	title: string;
+	images: { jpg: { image_url: string } };
+};
+
 const Home = (props: props) => {
 	console.log(props.data);
 
-	return props?.data?.map(
-		(anime: {
-			mal_id: number;
-			title: string;
-			images: { jpg: { image_url: string } };
-		}) => {
-			return (
-				<div key={anime.mal_id}>
-					<img src={anime.images.jpg.image_url} alt="" />
-					<span>{anime.title}</span>
-				</div>
-			);
-		}
-	);
+	return props?.data?.map((anime: anime) => {
+		return (
+			<div key={anime.mal_id}>
+				<img src={anime.images.jpg.image_url} alt="" />
+				<span>{anime.title}</span>
+			</div>
+		);
+	});
 };
 
 export const getStaticProps: GetStaticProps = async () => {
